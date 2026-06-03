@@ -1,0 +1,37 @@
+# IDEs
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Compilados
+out/
+target/
+*.class
+*.jar
+*.war
+
+# Sistema Operativo
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Gradle
+.gradle/
+build/
+
+# Maven
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+.flattened-pom.xml
+
+# Logs
+*.log
+logs/
+
