@@ -7,7 +7,7 @@ public class Main {
         System.out.println("Isaac Benítez");
         System.out.println("Mathías Castillo");
         // Precaución: N = 100_000 en Bubble Sort tomará bastante tiempo.
-        int[] sizes = {10_000, 100_000};
+        int[] sizes = {10_000, 100_000, 1_000_000}; // N = 10^4, 10^5, 10^6
         long operacionesServidor = 1_000_000_000L; // 10^9 operaciones
 
         for (int n : sizes) {
@@ -25,6 +25,7 @@ public class Main {
 
             long timeBubbleAleatorio = 0;
             long timeMergeAleatorio = 0;
+            long timeQuickAleatorio  = 0;
 
             // 1. BUBBLE SORT
             System.out.println("\n[ 1. Evaluando Bubble Sort ]");
@@ -47,20 +48,28 @@ public class Main {
             for (int i = 0; i < estadosDeDatos.length; i++) {
                 System.out.print("Estado " + nombresEstados[i] + ": ");
                 try {
-                    executeAverage("Quick", estadosDeDatos[i], 10);
+                    long time = executeAverage("Quick", estadosDeDatos[i], 10).timeNanos;
+                    if (i == 0) timeQuickAleatorio = time; // Guardamos para cálculo de CO2
                 } catch (StackOverflowError e) {
                     System.out.println("ERROR: StackOverflow. Altura (h) excedió límite JVM por degeneración estructural.");
                 }
             }
 
-            // 4. ANÁLISIS AMBIENTAL (Usando tiempos del estado Aleatorio)
+            // 4. ANÁLISIS AMBIENTAL (Comparar Bubble vs Quick usando tiempos del estado Aleatorio)
             System.out.println("\n--- ANÁLISIS DE IMPACTO AMBIENTAL (CO2) ---");
+            System.out.println("Comparando: Bubble Sort vs Quick Sort");
             double bubbleCO2 = EcoAnalyzer.calculateCO2Kg(timeBubbleAleatorio, operacionesServidor);
-            double mergeCO2 = EcoAnalyzer.calculateCO2Kg(timeMergeAleatorio, operacionesServidor);
+            double quickCO2  = EcoAnalyzer.calculateCO2Kg(timeQuickAleatorio, operacionesServidor);
 
-            System.out.printf("CO2 emitido por Bubble Sort en 10^9 ops: %.4f Kg%n", bubbleCO2);
-            System.out.printf("CO2 emitido por Merge Sort en 10^9 ops: %.4f Kg%n", mergeCO2);
-            System.out.printf("AHORRO DE CO2 al migrar a Merge Sort: %.4f Kg%n", (bubbleCO2 - mergeCO2));
+            System.out.printf("CO2 emitido por Bubble Sort (%,d ejecuciones): %.4f Kg%n", operacionesServidor, bubbleCO2);
+            System.out.printf("CO2 emitido por Quick Sort (%,d ejecuciones): %.4f Kg%n", operacionesServidor, quickCO2);
+            
+            double ahorroKg = bubbleCO2 - quickCO2;
+            double ahorroPct = (bubbleCO2 > 0) ? (ahorroKg / bubbleCO2 * 100.0) : 0.0;
+            double ahorroToneladas = ahorroKg / 1000.0;
+            
+            System.out.printf("AHORRO ABSOLUTO al migrar a Quick Sort: %.4f Kg (%.2f%%)%n", ahorroKg, ahorroPct);
+            System.out.printf("AHORRO PROYECTADO (anual): %.6f toneladas de CO2%n", ahorroToneladas);
         }
     }
 
