@@ -7,7 +7,7 @@
 
 ---
 
-## 📋 Descripción del Proyecto
+## Descripción del Proyecto
 
 Este laboratorio compara tres algoritmos de ordenamiento clásicos:
 - **Bubble Sort**: Algoritmo simple con complejidad O(n²)
@@ -23,7 +23,7 @@ Con tres tamaños de entrada: 10,000, 100,000 y 1,000,000 elementos.
 
 ---
 
-## 🔧 Supuestos y Metodología
+## Supuestos y Metodología
 
 ### Parámetros de Cálculo de CO2
 
@@ -47,28 +47,7 @@ Para algoritmos recursivos (Merge Sort y Quick Sort) se registra la altura/profu
 
 ---
 
-## 📊 Resultados Esperados
-
-| N | Algoritmo | Est. Tiempo (s) | h | CO2/exec (g) | CO2 Anual (Kg) | Ahorro vs. Bubble (Kg) | Ahorro (%) |
-|---|-----------|-----------------|---|---|---|---|---|
-| 10,000 | Bubble | ~0.05 | 0 | ~0.0004 | ~400 | — | — |
-| 10,000 | Merge | ~0.0005 | ~14 | ~0.0000025 | ~2.5 | 397.5 | 99.4% |
-| 10,000 | Quick | ~0.0008 | ~13 | ~0.0000040 | ~4 | 396 | 99.0% |
-| 100,000 | Bubble | ~5.0 | 0 | ~0.0162 | ~16,200 | — | — |
-| 100,000 | Merge | ~0.005 | ~17 | ~0.00016 | ~160 | 16,040 | 99.0% |
-| 100,000 | Quick | ~0.008 | ~17 | ~0.00026 | ~260 | 15,940 | 98.4% |
-| 1,000,000 | Bubble | *(muy lento - omitido)* | — | — | — | — | — |
-| 1,000,000 | Merge | ~0.06 | ~20 | ~0.00195 | ~1,950 | *(approx)* | *(approx)* |
-| 1,000,000 | Quick | ~0.10 | ~20 | ~0.00325 | ~3,250 | *(approx)* | *(approx)* |
-
-**Notas:**
-- Bubble Sort para N=1,000,000 puede no ejecutarse en tiempo razonable (O(n²) es prohibitivo)
-- Quick Sort usa pivote en primer elemento → degeneración en datos ordenados
-- Heights (~20) indican recursión profunda pero controlada para N=10^6
-
----
-
-## 🌍 Análisis de Impacto Ambiental - Reflexión Ética
+## Análisis de Impacto Ambiental - Reflexión Ética
 
 ### Cálculo de Reflexión: ¿Es ético ignorar la complejidad algorítmica?
 
@@ -112,7 +91,7 @@ Para algoritmos recursivos (Merge Sort y Quick Sort) se registra la altura/profu
 
 ---
 
-## 📈 Proyecciones de Ahorro Anual
+## Proyecciones de Ahorro Anual
 
 **Escenario: Migración de Bubble Sort a Quick Sort optimizado**
 
@@ -133,7 +112,7 @@ Reducción porcentual:        98.4%
 
 ---
 
-## 🚀 Instrucciones de Ejecución
+## Instrucciones de Ejecución
 
 ### Compilar:
 ```bash
@@ -149,7 +128,7 @@ java -cp out Main
 
 ---
 
-## 📝 Conclusiones
+## Conclusiones
 
 1. **Superioridad clara de Merge/Quick**: Ambos son significativamente más eficientes que Bubble Sort
 2. **CO2 y decisiones algorítmicas**: La elección del algoritmo tiene impacto ambiental real y medible
@@ -159,7 +138,7 @@ java -cp out Main
 
 ---
 
-## 📚 Referencias
+## Referencias
 
 - Materials: `BubbleSort.java`, `MergeSort.java`, `QuickSort.java`, `Main.java`, `EcoAnalyzer.java`
 - Datos de energía: Estimaciones estándar de data centers (65W servidor promedio, 0.5 g CO2/kJ)
@@ -167,5 +146,5 @@ java -cp out Main
 
 ---
 
-**Última actualización:** Junio 3, 2026
+
 

@@ -1,4 +1,5 @@
 
+// Almacena el resultado de una ejecución de ordenamiento: tiempo en nanosegundos y altura recursiva
 public class SortResult {
     public long timeNanos;
     public int height;

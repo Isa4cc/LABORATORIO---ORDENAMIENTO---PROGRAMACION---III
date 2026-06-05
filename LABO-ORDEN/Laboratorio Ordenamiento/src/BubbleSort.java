@@ -1,5 +1,6 @@
 
 public class BubbleSort {
+    // Algoritmo O(n^2): compara e intercambia pares adyacentes de forma iterativa
     public static SortResult sort(int[] arr) {
         long start = System.nanoTime();
         int n = arr.length;
@@ -13,6 +14,6 @@ public class BubbleSort {
             }
         }
         long time = System.nanoTime() - start;
-        return new SortResult(time, 0); // No recursivo
+        return new SortResult(time, 0); // No es recursivo, altura siempre 0
     }
 }

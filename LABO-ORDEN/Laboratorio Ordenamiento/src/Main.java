@@ -7,8 +7,9 @@ public class Main {
         System.out.println("Isaac Benítez");
         System.out.println("Mathías Castillo");
         // Precaución: N = 100_000 en Bubble Sort tomará bastante tiempo.
-        int[] sizes = {10_000, 100_000, 1_000_000}; // N = 10^4, 10^5, 10^6
-        long operacionesServidor = 1_000_000_000L; // 10^9 operaciones
+        int[] sizes = {10_000, 100_000}; // N = 1,000,000 omitido por tiempo de ejecución extremo
+        long operacionesServidor = 1_000_000_000L; // 10^9 operaciones para cálculo de CO2
+
 
         for (int n : sizes) {
             System.out.println("\n==============================================");
@@ -27,12 +28,18 @@ public class Main {
             long timeMergeAleatorio = 0;
             long timeQuickAleatorio  = 0;
 
-            // 1. BUBBLE SORT
+            // 1. BUBBLE SORT (Omitido para N grandes por rendimiento)
             System.out.println("\n[ 1. Evaluando Bubble Sort ]");
-            for (int i = 0; i < estadosDeDatos.length; i++) {
-                System.out.print("Estado " + nombresEstados[i] + ": ");
-                long time = executeAverage("Bubble", estadosDeDatos[i], 10).timeNanos;
-                if (i == 0) timeBubbleAleatorio = time; // Guardamos para cálculo de CO2
+            if (n >= 100_000) {
+                System.out.println("Estado (A) Aleatorio: Omitido por N >= 100,000. Tiempo de ejecución demasiado largo.");
+                System.out.println("Estado (B) Ya ordenado: Omitido por N >= 100,000.");
+                System.out.println("Estado (C) Orden inverso: Omitido por N >= 100,000.");
+            } else {
+                for (int i = 0; i < estadosDeDatos.length; i++) {
+                    System.out.print("Estado " + nombresEstados[i] + ": ");
+                    long time = executeAverage("Bubble", estadosDeDatos[i], 10).timeNanos;
+                    if (i == 0) timeBubbleAleatorio = time; // Guardamos para cálculo de CO2
+                }
             }
 
             // 2. MERGE SORT
@@ -78,6 +85,7 @@ public class Main {
         int lastHeight = 0;
 
         for (int i = 0; i < iterations; i++) {
+            // Se crea una copia para no alterar el arreglo original en cada iteración
             int[] arrCopy = Arrays.copyOf(originalArr, originalArr.length);
             SortResult result;
 
@@ -92,8 +100,11 @@ public class Main {
             lastHeight = result.height;
         }
 
+        // Calcula el promedio para obtener una métrica estable
         long avgTime = totalTime / iterations;
-        System.out.printf("Tiempo Promedio: %,d ns | Altura final (h): %d%n", avgTime, lastHeight);
+        // Convierte a milisegundos para una mejor legibilidad
+        double avgTimeMs = avgTime / 1_000_000.0;
+        System.out.printf("Tiempo Promedio: %.2f ms | Altura final (h): %d%n", avgTimeMs, lastHeight);
         return new SortResult(avgTime, lastHeight);
     }
 }
