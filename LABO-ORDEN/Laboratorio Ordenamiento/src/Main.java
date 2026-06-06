@@ -7,7 +7,7 @@ public class Main {
         System.out.println("Isaac Benítez");
         System.out.println("Mathías Castillo");
         // Precaución: N = 100_000 en Bubble Sort tomará bastante tiempo.
-        int[] sizes = {10_000, 100_000}; // N = 1,000,000 omitido por tiempo de ejecución extremo
+        int[] sizes = {10_000, 100_000, 1_000_000};
         long operacionesServidor = 1_000_000_000L; // 10^9 operaciones para cálculo de CO2
 
 
@@ -28,12 +28,12 @@ public class Main {
             long timeMergeAleatorio = 0;
             long timeQuickAleatorio  = 0;
 
-            // 1. BUBBLE SORT (Omitido para N grandes por rendimiento)
+            // 1. BUBBLE SORT (Omitido solo para 1,000,000 por tiempo extremo)
             System.out.println("\n[ 1. Evaluando Bubble Sort ]");
-            if (n >= 100_000) {
-                System.out.println("Estado (A) Aleatorio: Omitido por N >= 100,000. Tiempo de ejecución demasiado largo.");
-                System.out.println("Estado (B) Ya ordenado: Omitido por N >= 100,000.");
-                System.out.println("Estado (C) Orden inverso: Omitido por N >= 100,000.");
+            if (n >= 1_000_000) {
+                System.out.println("Estado (A) Aleatorio: Omitido por N >= 1,000,000. Tiempo de ejecución demasiado largo.");
+                System.out.println("Estado (B) Ya ordenado: Omitido por N >= 1,000,000.");
+                System.out.println("Estado (C) Orden inverso: Omitido por N >= 1,000,000.");
             } else {
                 for (int i = 0; i < estadosDeDatos.length; i++) {
                     System.out.print("Estado " + nombresEstados[i] + ": ");
